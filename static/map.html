@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+      html, body, .container-fluid {
+        height: 100%;
+        width: 100%;
+      }
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <title>One-mile Radius</title>
+  </head>
+  <body>
+      <div class="container-fluid">
+      <div class="row h-100">
+        <div class="col-2">
+          <p class="h3 mt-2">Features</p>
+          <hr>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="bank_ch">
+            <label class="form-check-label" for="bank_cb">
+              Bank
+            </label>
+        </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="church_cb">
+            <label class="form-check-label" for="church_cb">
+              Church
+            </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="hotel_cb">
+          <label class="form-check-label" for="hotel_cb">
+            Hotel
+          </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="city_hall_cb">
+        <label class="form-check-label" for="city_hall_cb">
+          City Hall
+        </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="embassy_cb">
+      <label class="form-check-label" for="embassy_cb">
+        Embassy
+      </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="hindu_temple_cb">
+    <label class="form-check-label" for="hindu_temple_cb">
+      Hindu Temple
+    </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="hospital_cb">
+  <label class="form-check-label" for="hospital_cb">
+    Hospital
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="local_gov_office_cb">
+  <label class="form-check-label" for="local_gov_office_cb">
+    Local Government Office
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="mosque_cb">
+  <label class="form-check-label" for="mosque_cb">
+    Mosque
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="park_cb">
+  <label class="form-check-label" for="park_cb">
+    Park
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="school_cb">
+  <label class="form-check-label" for="school_cb">
+    School
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="shopping_mall_cb">
+  <label class="form-check-label" for="shopping_mall_cb">
+    Shopping Mall
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="stadium_cb">
+  <label class="form-check-label" for="stadium_cb">
+    Stadium
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="supermarket_cb">
+  <label class="form-check-label" for="supermarket_cb">
+    Super Market
+  </label>
+</div>
+<p class="h3 mt-2">Base Map</p>
+<hr>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="satellite_bm" id="satellite_bm" value="satellite" checked>
+  <label class="form-check-label" for="satellite_bm">
+    Satellite
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="map_bm" id="map_bm" value="map">
+  <label class="form-check-label" for="map_bm">
+    Map
+  </label>
+</div>
+<hr>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="radius_cb">
+  <label class="form-check-label" for="radius_cb">
+    Draw Radius Circle
+  </label>
+</div>
+      </div>
+        <div class="col-10">
+          <div id="map">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="./html2canvas/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+     var map;
+     function initMap() {
+       map = new google.maps.Map(document.getElementById('map'), {
+         center: {lat: -34.397, lng: 150.644},
+         zoom: 8
+       });
+     }
+     setTimeout(function(){
+       html2canvas(document.querySelector("body")).then(canvas => {
+         document.body.appendChild(canvas)
+       });
+     },5000);
+   </script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt-IRfqD_RTeLBXpr9ARzzQpefHLqzvj0&callback=initMap"
+   async defer></script>
+  </body>
+</html>
